@@ -1,12 +1,12 @@
 const express = require('express');
 const app = new express();
 const sql = require('mssql');
-//const cors = require('cors');
-//const CC = require('./CoordConverter.js');
+const cors = require('cors');
+const CC = require('./CoordConverter.js');
 
-//app.use(new cors());
+app.use(new cors());
 
-//const coordConverter =  new CC();
+const coordConverter =  new CC();
 
 const config = {
     user: 'PCTO',  //Vostro user name
@@ -30,20 +30,12 @@ function makeSqlRequest(res) {
     sqlRequest.query(q, (err, result) => {sendQueryResults(err,result,res)}); 
 }
 
+
 function sendQueryResults(err,result, res)
 {
     if (err) console.log(err); // ... error checks
-    res.send(result.recordset);  //Invio il risultato al Browser
-}
-
-/*function sendQueryResults(err,result, res)
-{
-    if (err) console.log(err); // ... error checks
     res.send(coordConverter.generateGeoJson(result.recordset));  //Invio il risultato al Browser
-}*/
-
-
-
+}
 
 
 app.listen(3000, function () {
