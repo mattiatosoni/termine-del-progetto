@@ -1,6 +1,6 @@
 const proj4 = require('proj4');
 const parse = require('wellknown');
-const Geometry = require('./models/geometry.model.js');
+const Feature = require('./models/feature.model.js');
 const FeatureCollection = require('./models/featureCollection.model.js');
 
 module.exports = class CoordConverter {
@@ -20,7 +20,7 @@ module.exports = class CoordConverter {
             let polygonGeometry = parse(record[""]); //parso da wkt a geojson geometry
             let geom = this._convertPolygon(polygonGeometry); // converto in "EPSG:4362" 
             // e metto la geometry  geojson
-            geoJsonHeader.features.push(new Geometry(i,geom));
+            geoJsonHeader.features.push(new Feature(i,geom));
         }
         return geoJsonHeader;
     }

@@ -1,4 +1,4 @@
-module.exports = class Geometry {
+module.exports = class Feature {
     constructor(id, geometry) {
         this.type = "Feature";
         this.properties = new Properties(id);
